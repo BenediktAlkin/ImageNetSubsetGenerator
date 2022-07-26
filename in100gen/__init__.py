@@ -52,9 +52,11 @@ def generate(in1k_path, out_path, version=None, classes=None, log_fn=print, verb
         log(f"finished copying {split}")
 
     # copy metafile
-    log("copying meta.bin")
-    shutil.copy(in1k_path / "meta.bin", out_path / "meta.bin")
-    log("copied meta.bin")
+    meta_path = in1k_path / "meta.bin"
+    if meta_path.exists():
+        log("copying meta.bin")
+        shutil.copy(in1k_path / "meta.bin", out_path / "meta.bin")
+        log("copied meta.bin")
 
 
 def _log(*args, log_fn=print, verbose=True, **kwargs):
