@@ -56,6 +56,8 @@ def generate(in1k_path, out_path, version=None, classes=None, log_fn=print, verb
         log("copying meta.bin")
         shutil.copy(in1k_path / "meta.bin", out_path / "meta.bin")
         log("copied meta.bin")
+    else:
+        log(f"no meta.bin file found --> generated dataset will not be usable with torchvision.dataset.ImageNet")
 
     # write readme
     if INFO is not None:
