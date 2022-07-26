@@ -1,5 +1,3 @@
-import os
-import shutil
 from functools import partial
 from pathlib import Path
 
@@ -19,9 +17,9 @@ def generate(in1k_path, out_path, version=None, classes=None, log_fn=print, verb
     if version is not None:
         assert version in VERSIONS, f"invalid version '{version}' use one of {VERSIONS}"
         if version == "kaggle":
-            from .versions.kaggle import CLASSES
+            from .versions.kaggle import CLASSES, INFO
         elif version == "solo_learn" or version == "solo-learn":
-            from .versions.kaggle import CLASSES
+            from .versions.kaggle import CLASSES, INFO
         else:
             raise RuntimeError
         classes = CLASSES
@@ -32,6 +30,7 @@ def generate(in1k_path, out_path, version=None, classes=None, log_fn=print, verb
         assert isinstance(classes, list) and all(map(lambda c: isinstanc(c, str), classes)), invalid_classes_msg
         log(f"generating ImageNet100-{version}")
         log(f"classes: {classes}")
+        INFO = None
     # max number of digits
     lpad = len(str(len(classes)))
 
@@ -57,6 +56,13 @@ def generate(in1k_path, out_path, version=None, classes=None, log_fn=print, verb
         log("copying meta.bin")
         shutil.copy(in1k_path / "meta.bin", out_path / "meta.bin")
         log("copied meta.bin")
+
+    # write readme
+    if INFO is not None:
+        log("creating README.txt")
+        with open(out_path / "README.txt", "w") as f:
+            f.writelines(INFO)
+        log("created README.txt")
 
 
 def _log(*args, log_fn=print, verbose=True, **kwargs):

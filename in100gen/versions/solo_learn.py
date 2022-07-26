@@ -1,5 +1,7 @@
-# https://github.com/vturrisi/solo-learn/issues/137
-# https://github.com/HobbitLong/CMC/issues/21
+INFO = [
+    "https://github.com/vturrisi/solo-learn/issues/137",
+    "https://github.com/HobbitLong/CMC/issues/21",
+]
 CLASSES = [
     "n01558993",
     "n01692333",

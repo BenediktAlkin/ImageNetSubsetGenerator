@@ -1,4 +1,6 @@
-# https://www.kaggle.com/datasets/ambityga/imagenet100
+INFO = [
+    "https://www.kaggle.com/datasets/ambityga/imagenet100",
+]
 CLASSES = [
     "n01440764",
     "n01443537",
