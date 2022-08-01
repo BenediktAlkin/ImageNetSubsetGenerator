@@ -1,5 +1,16 @@
 INFO = [
     "https://arxiv.org/abs/2205.14204",
+    "ImageNet classes from the visualization of M3AE (https://arxiv.org/abs/2205.14204)",
+    "tench - 0 - n01440764",
+    "killer whale - 148 - n02071294",
+    "ice bear - 296 - n02134084",
+    "bicycle-built-for-two - 444 - n02835271",
+    "hard disc - 592 - n03492542",
+    "garden spider - 74 - n01773797",
+    "kuvasz - 222 - n02104029",
+    "guenon - 370 - n02484975",
+    "crash helmet - 518 - n03127747",
+    "mortar - 666 - n03786901",
 ]
 CLASSES = [
     "n01440764",
