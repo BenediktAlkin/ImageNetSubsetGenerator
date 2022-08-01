@@ -3,7 +3,7 @@ import shutil
 from functools import partial
 from pathlib import Path
 
-VERSIONS = ["kaggle", "solo-learn"]
+VERSIONS = ["kaggle", "solo-learn", "m3ae"]
 
 
 def generate(in1k_path, out_path, version=None, classes=None, log_fn=print, verbose=True):
@@ -22,6 +22,8 @@ def generate(in1k_path, out_path, version=None, classes=None, log_fn=print, verb
             from .versions.kaggle import CLASSES, INFO
         elif version == "solo_learn" or version == "solo-learn":
             from .versions.kaggle import CLASSES, INFO
+        elif version == "m3ae":
+            from .versions.m3ae import CLASSES, INFO
         else:
             raise RuntimeError
         classes = CLASSES
