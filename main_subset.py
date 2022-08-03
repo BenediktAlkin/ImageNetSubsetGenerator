@@ -1,6 +1,7 @@
-from imagenet_subset_generator import generate_subset, VERSIONS
-import os
 import argparse
+
+from imagenet_subset_generator import generate_subset, VERSIONS
+
 
 def parse_args():
     parser = argparse.ArgumentParser()

@@ -1,9 +1,11 @@
 import unittest
+
 from imagenet_subset_generator.generate_dummy_dataset import generate_dummy_dataset
 from imagenet_subset_generator.generate_subset import generate_subset
-from tests_util.assert_clean_directory import assert_clean_directory
 from imagenet_subset_generator.versions.in100_sololearn import CLASSES
+from tests_util.assert_clean_directory import assert_clean_directory
 from tests_util.directory_utils import n_files_in_directory, all_folder_names
+
 
 class TestGenerateSubset(unittest.TestCase):
     def test_in100sololearn(self):

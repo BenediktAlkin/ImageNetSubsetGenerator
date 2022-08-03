@@ -1,6 +1,7 @@
-from pathlib import Path
 import inspect
 import shutil
+from pathlib import Path
+
 
 def assert_clean_directory(file_name, subfolder=None):
     test_name = inspect.stack()[1][3]

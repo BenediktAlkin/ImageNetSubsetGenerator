@@ -1,9 +1,10 @@
 import os
 from pathlib import Path
-from .util import get_classes_and_info
 
 import torch
 from torchvision.transforms.functional import to_pil_image
+
+from .util import get_classes_and_info
 
 
 def generate_dummy_dataset(
@@ -27,7 +28,6 @@ def generate_dummy_dataset(
         use_in1k_as_default=True,
         log=log,
     )
-
 
     # log parameters
     log(f"generating dummy imagenet in: {out_path}")

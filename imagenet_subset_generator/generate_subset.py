@@ -1,7 +1,9 @@
-from .util import get_classes_and_info
-from pathlib import Path
 import os
 import shutil
+from pathlib import Path
+
+from .util import get_classes_and_info
+
 
 def generate_subset(in1k_path, out_path, version=None, classes=None, n_classes=None, log=print):
     in1k_path = Path(in1k_path).expanduser()
