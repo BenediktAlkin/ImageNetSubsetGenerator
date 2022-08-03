@@ -4,7 +4,7 @@ from imagenet_subset_generator.generate_dummy_dataset import generate_dummy_data
 from imagenet_subset_generator.generate_subset import generate_subset
 from imagenet_subset_generator.versions.in100_sololearn import CLASSES
 from tests_util.assert_clean_directory import assert_clean_directory
-from tests_util.directory_utils import n_files_in_directory, all_folder_names
+from imagenet_subset_generator.util import n_files_in_directory, folder_names_in_directory
 
 
 class TestGenerateSubset(unittest.TestCase):
@@ -24,5 +24,5 @@ class TestGenerateSubset(unittest.TestCase):
         root_in100 = assert_clean_directory(__name__, subfolder="in100")
         generate_subset(in1k_path=root_in1k, out_path=root_in100, version="in100_sololearn")
         self.assertEqual(201, n_files_in_directory(root_in100))
-        self.assertEqual(CLASSES, all_folder_names(root_in100 / "train"))
-        self.assertEqual(CLASSES, all_folder_names(root_in100 / "val"))
+        self.assertEqual(CLASSES, folder_names_in_directory(root_in100 / "train"))
+        self.assertEqual(CLASSES, folder_names_in_directory(root_in100 / "val"))

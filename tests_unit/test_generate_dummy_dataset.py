@@ -2,7 +2,7 @@ import unittest
 
 from imagenet_subset_generator.generate_dummy_dataset import generate_dummy_dataset
 from tests_util.assert_clean_directory import assert_clean_directory
-from tests_util.directory_utils import n_files_in_directory
+from imagenet_subset_generator.util import n_files_in_directory
 
 
 class TestGenerateDummyDataset(unittest.TestCase):

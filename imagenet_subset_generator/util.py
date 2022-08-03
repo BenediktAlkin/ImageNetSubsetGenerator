@@ -1,5 +1,22 @@
-VERSIONS = ["in1k", "in100_kaggle", "in100_sololearn", "in10_m3ae"]
+import itertools
+import os
 
+
+def n_files_in_directory(root):
+    return sum([len(files) for _, _, files in os.walk(root)])
+
+def file_names_in_directory(root):
+    return list(itertools.chain(*[files for _, _, files in os.walk(root)]))
+
+def n_folders_in_directory(root):
+    return sum([len(dirs) for _, dirs, _ in os.walk(root)])
+
+def folder_names_in_directory(root):
+    return list(itertools.chain(*[dirs for _, dirs, _ in os.walk(root)]))
+
+
+
+VERSIONS = ["in1k", "in100_kaggle", "in100_sololearn", "in10_m3ae"]
 
 def get_classes_and_info(classes=None, version=None, n_classes=None, use_in1k_as_default=False, log=print):
     """
