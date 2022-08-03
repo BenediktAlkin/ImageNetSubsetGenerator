@@ -23,7 +23,7 @@ Generate a lightweight dummy dataset for easy debugging/development
 ```
 train n_classes: 1000
 valid n_classes: 1000
-train n_samples: TODO
+train n_samples: 1282169
 valid n_samples: 50000
 train classes: ['n01440764', ...]
 valid classes: ['n01440764', ...]
