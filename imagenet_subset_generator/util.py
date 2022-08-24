@@ -1,5 +1,6 @@
 import itertools
 import os
+import numpy as np
 
 
 def n_files_in_directory(root):
@@ -40,16 +41,39 @@ def get_classes_and_info(classes=None, version=None, n_classes=None, use_in1k_as
 
     if version is not None:
         assert version in VERSIONS, f"invalid version '{version}' use one of {VERSIONS}"
+        # TODO this can be made based on filenames
         if version == "in100_kaggle":
             from .versions.in100_kaggle import CLASSES, INFO
         elif version == "in100_sololearn":
             from .versions.in100_sololearn import CLASSES, INFO
         elif version == "in10_m3ae":
             from .versions.in10_m3ae import CLASSES, INFO
+        elif version == "in100_seed1":
+            from .versions.in100_seed1 import CLASSES, INFO
+        elif version == "in100_seed2":
+            from .versions.in100_seed2 import CLASSES, INFO
+        elif version == "in100_seed3":
+            from .versions.in100_seed3 import CLASSES, INFO
+        elif version == "in100_seed4":
+            from .versions.in100_seed4 import CLASSES, INFO
+        elif version == "in100_seed5":
+            from .versions.in100_seed5 import CLASSES, INFO
+        elif version == "in200_seed1":
+            from .versions.in200_seed1 import CLASSES, INFO
+        elif version == "in200_seed2":
+            from .versions.in200_seed2 import CLASSES, INFO
+        elif version == "in200_seed3":
+            from .versions.in200_seed3 import CLASSES, INFO
+        elif version == "in200_seed4":
+            from .versions.in200_seed4 import CLASSES, INFO
+        elif version == "in200_seed5":
+            from .versions.in200_seed5 import CLASSES, INFO
         else:
-            raise RuntimeError
+            raise RuntimeError("no CLASSES/INFO defined for version '{version}'")
         log(f"generating {version}")
         log(f"classes: {CLASSES}")
+        # sanity check to avoid duplicates
+        assert len(np.unique(CLASSES)) == len(CLASSES)
         return CLASSES, INFO
 
     if n_classes is not None:

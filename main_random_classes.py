@@ -11,8 +11,8 @@ def parse_args():
 def main():
     args = parse_args()
     rng = np.random.default_rng(seed=args.seed)
-    for cls in rng.choice(CLASSES, args.n_classes):
-        print(cls)
+    for cls in rng.choice(CLASSES, args.n_classes, replace=False):
+        print(f"\t\"{cls}\",")
 
 
 if __name__ == "__main__":

@@ -39,4 +39,12 @@ valid classes: ['n01440764', ...]
   classes ([source](https://github.com/vturrisi/solo-learn/issues/137))
 - `in10_m3ae` - classes used for visualization in [M3AE](https://arxiv.org/abs/2205.14204)
 - `in100_seed1` - random selection of 100 ImageNet1K classes with `seed=1`
+- `in100_seed2` - random selection of 100 ImageNet1K classes with `seed=2`
+- `in100_seed3` - random selection of 100 ImageNet1K classes with `seed=3`
+- `in100_seed4` - random selection of 100 ImageNet1K classes with `seed=4`
+- `in100_seed5` - random selection of 100 ImageNet1K classes with `seed=5`
+- `in200_seed1` - random selection of 200 ImageNet1K classes with `seed=1`
 - `in200_seed2` - random selection of 200 ImageNet1K classes with `seed=2`
+- `in200_seed3` - random selection of 200 ImageNet1K classes with `seed=3`
+- `in200_seed4` - random selection of 200 ImageNet1K classes with `seed=4`
+- `in200_seed5` - random selection of 200 ImageNet1K classes with `seed=5`
