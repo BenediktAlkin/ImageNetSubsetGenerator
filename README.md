@@ -38,3 +38,5 @@ valid classes: ['n01440764', ...]
 - `in100_sololearn` - subset of ImageNet1K with 100
   classes ([source](https://github.com/vturrisi/solo-learn/issues/137))
 - `in10_m3ae` - classes used for visualization in [M3AE](https://arxiv.org/abs/2205.14204)
+- `in100_seed1` - random selection of 100 ImageNet1K classes with `seed=1`
+- `in200_seed2` - random selection of 200 ImageNet1K classes with `seed=2`

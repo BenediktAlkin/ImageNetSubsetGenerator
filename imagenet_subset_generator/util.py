@@ -16,7 +16,7 @@ def folder_names_in_directory(root):
 
 
 
-VERSIONS = ["in1k", "in100_kaggle", "in100_sololearn", "in10_m3ae"]
+VERSIONS = ["in1k", "in100_kaggle", "in100_sololearn", "in10_m3ae", "in100_seed1", "in200_seed2"]
 
 def get_classes_and_info(classes=None, version=None, n_classes=None, use_in1k_as_default=False, log=print):
     """
