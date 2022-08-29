@@ -37,6 +37,24 @@ valid classes: ['n01440764', ...]
   classes ([source](https://www.kaggle.com/datasets/ambityga/imagenet100))
 - `in100_sololearn` - subset of ImageNet1K with 100
   classes ([source](https://github.com/vturrisi/solo-learn/issues/137))
+- `in100_sololearn_cv1` - "cross validation split" with `in100_sololearn` as base (100 random classes that don't occour 
+  in `in100_sololearn`)
+- `in100_sololearn_cv2` - "cross validation split" with `in100_sololearn` as base (100 random classes that don't occour 
+  in `in100_sololearn` and don't occour in previous `in100_sololearn_cv` splits)
+- `in100_sololearn_cv3` - "cross validation split" with `in100_sololearn` as base (100 random classes that don't occour 
+  in `in100_sololearn` and don't occour in previous `in100_sololearn_cv` splits)
+- `in100_sololearn_cv4` - "cross validation split" with `in100_sololearn` as base (100 random classes that don't occour 
+  in `in100_sololearn` and don't occour in previous `in100_sololearn_cv` splits)
+- `in100_sololearn_cv5` - "cross validation split" with `in100_sololearn` as base (100 random classes that don't occour 
+  in `in100_sololearn` and don't occour in previous `in100_sololearn_cv` splits)
+- `in100_sololearn_cv6` - "cross validation split" with `in100_sololearn` as base (100 random classes that don't occour 
+  in `in100_sololearn` and don't occour in previous `in100_sololearn_cv` splits)
+- `in100_sololearn_cv7` - "cross validation split" with `in100_sololearn` as base (100 random classes that don't occour  
+  in `in100_sololearn` and don't occour in previous `in100_sololearn_cv` splits)
+- `in100_sololearn_cv8` - "cross validation split" with `in100_sololearn` as base (100 random classes that don't occour 
+  in `in100_sololearn` and don't occour in previous `in100_sololearn_cv` splits)
+- `in100_sololearn_cv9` - "cross validation split" with `in100_sololearn` as base (100 random classes that don't occour 
+  in `in100_sololearn` and don't occour in previous `in100_sololearn_cv` splits)
 - `in10_m3ae` - classes used for visualization in [M3AE](https://arxiv.org/abs/2205.14204)
 - `in100_seed1` - random selection of 100 ImageNet1K classes with `seed=1`
 - `in100_seed2` - random selection of 100 ImageNet1K classes with `seed=2`
@@ -48,3 +66,8 @@ valid classes: ['n01440764', ...]
 - `in200_seed3` - random selection of 200 ImageNet1K classes with `seed=3`
 - `in200_seed4` - random selection of 200 ImageNet1K classes with `seed=4`
 - `in200_seed5` - random selection of 200 ImageNet1K classes with `seed=5`
+- `in200_sololearn_cv0` - concatenation of `in100_sololearn` and `in100_sololearn_cv1`
+- `in200_sololearn_cv1` - concatenation of `in100_sololearn_cv2` and `in100_sololearn_cv3`
+- `in200_sololearn_cv2` - concatenation of `in100_sololearn_cv4` and `in100_sololearn_cv5`
+- `in200_sololearn_cv3` - concatenation of `in100_sololearn_cv6` and `in100_sololearn_cv7`
+- `in200_sololearn_cv4` - concatenation of `in100_sololearn_cv8` and `in100_sololearn_cv9`
