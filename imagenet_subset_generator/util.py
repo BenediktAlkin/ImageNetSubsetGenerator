@@ -1,6 +1,8 @@
+import importlib
 import itertools
 import os
 import numpy as np
+from pathlib import Path
 
 
 def n_files_in_directory(root):
@@ -15,9 +17,16 @@ def n_folders_in_directory(root):
 def folder_names_in_directory(root):
     return list(itertools.chain(*[dirs for _, dirs, _ in os.walk(root)]))
 
+def get_versions():
+    path = Path(__file__).parent
+    versions = os.listdir(f"{path}/versions")
+    versions.remove("__init__.py")
+    versions.remove("__pycache__")
+    versions = list(map(lambda v: v[:-3], versions))
+    return versions
 
 
-VERSIONS = ["in1k", "in100_kaggle", "in100_sololearn", "in10_m3ae", "in100_seed1", "in200_seed2"]
+VERSIONS = get_versions()
 
 def get_classes_and_info(classes=None, version=None, n_classes=None, use_in1k_as_default=False, log=print):
     """
@@ -41,40 +50,12 @@ def get_classes_and_info(classes=None, version=None, n_classes=None, use_in1k_as
 
     if version is not None:
         assert version in VERSIONS, f"invalid version '{version}' use one of {VERSIONS}"
-        # TODO this can be made based on filenames
-        if version == "in100_kaggle":
-            from .versions.in100_kaggle import CLASSES, INFO
-        elif version == "in100_sololearn":
-            from .versions.in100_sololearn import CLASSES, INFO
-        elif version == "in10_m3ae":
-            from .versions.in10_m3ae import CLASSES, INFO
-        elif version == "in100_seed1":
-            from .versions.in100_seed1 import CLASSES, INFO
-        elif version == "in100_seed2":
-            from .versions.in100_seed2 import CLASSES, INFO
-        elif version == "in100_seed3":
-            from .versions.in100_seed3 import CLASSES, INFO
-        elif version == "in100_seed4":
-            from .versions.in100_seed4 import CLASSES, INFO
-        elif version == "in100_seed5":
-            from .versions.in100_seed5 import CLASSES, INFO
-        elif version == "in200_seed1":
-            from .versions.in200_seed1 import CLASSES, INFO
-        elif version == "in200_seed2":
-            from .versions.in200_seed2 import CLASSES, INFO
-        elif version == "in200_seed3":
-            from .versions.in200_seed3 import CLASSES, INFO
-        elif version == "in200_seed4":
-            from .versions.in200_seed4 import CLASSES, INFO
-        elif version == "in200_seed5":
-            from .versions.in200_seed5 import CLASSES, INFO
-        else:
-            raise RuntimeError("no CLASSES/INFO defined for version '{version}'")
+        version_module = importlib.import_module(f".versions.{version}", package="imagenet_subset_generator")
         log(f"generating {version}")
-        log(f"classes: {CLASSES}")
+        log(f"classes: {version_module.CLASSES}")
         # sanity check to avoid duplicates
-        assert len(np.unique(CLASSES)) == len(CLASSES)
-        return CLASSES, INFO
+        assert len(np.unique(version_module.CLASSES)) == len(version_module.CLASSES)
+        return version_module.CLASSES, version_module.INFO
 
     if n_classes is not None:
         assert isinstance(n_classes, int) and n_classes >= 1, "n_classes needs to be int and >= 1"
