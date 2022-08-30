@@ -71,3 +71,7 @@ valid classes: ['n01440764', ...]
 - `in200_sololearn_cv2` - concatenation of `in100_sololearn_cv4` and `in100_sololearn_cv5`
 - `in200_sololearn_cv3` - concatenation of `in100_sololearn_cv6` and `in100_sololearn_cv7`
 - `in200_sololearn_cv4` - concatenation of `in100_sololearn_cv8` and `in100_sololearn_cv9`
+
+
+## Get class labels
+`python main_get_class_labels --version <VERSION>`

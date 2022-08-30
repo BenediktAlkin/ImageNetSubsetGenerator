@@ -21,6 +21,7 @@ def main():
         print(f"\t\"generated with python main_solocrossvalid_classes --seed {args.seed}\"")
         print("]")
         classes = remaining_classes[:100]
+        classes = sorted(classes)
         remaining_classes = remaining_classes[100:]
         print("CLASSES = [")
         for cls in classes:
