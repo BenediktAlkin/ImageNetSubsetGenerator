@@ -76,8 +76,8 @@ valid classes: ['n01440764', ...]
 ## Get class labels
 `python main_get_class_labels --version <VERSION>`
 
+`python main_get_class_labels --version in10_m3ae`
 ```
-python main_get_class_labels --version in10_m3ae
 generating in10_m3ae
 classes: ['n01440764', 'n01773797', 'n02071294', 'n02104029', 'n02134084', 'n02484975', 'n02835271', 'n03127747', 'n03492542', 'n03786901']
 n01440764: ('tench', 'Tinca tinca')
