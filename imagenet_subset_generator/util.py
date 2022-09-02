@@ -44,14 +44,14 @@ def get_classes_and_info(classes=None, version=None, n_classes=None, use_in1k_as
     if classes is not None:
         invalid_classes_msg = "expected list of strings as classes parameter"
         assert isinstance(classes, list) and all(map(lambda c: isinstance(c, str), classes)), invalid_classes_msg
-        log(f"generating ImageNet100-{version}")
+        log(f"ImageNet100-{version}")
         log(f"classes: {classes}")
         return classes, None
 
     if version is not None:
         assert version in VERSIONS, f"invalid version '{version}' use one of {VERSIONS}"
         version_module = importlib.import_module(f".versions.{version}", package="imagenet_subset_generator")
-        log(f"generating {version}")
+        log(f"{version}")
         log(f"classes: {version_module.CLASSES}")
         # sanity check to avoid duplicates
         assert len(np.unique(version_module.CLASSES)) == len(version_module.CLASSES)
@@ -61,7 +61,7 @@ def get_classes_and_info(classes=None, version=None, n_classes=None, use_in1k_as
         assert isinstance(n_classes, int) and n_classes >= 1, "n_classes needs to be int and >= 1"
         assert n_classes < 1000, "n_classes needs to be < 1000"
         from .versions.in1k import CLASSES, INFO
-        log(f"generating a subset of ImageNet1K with the first {n_classes} classes")
+        log(f"subset of ImageNet1K with the first {n_classes} classes")
         log(f"classes: {CLASSES}")
         return CLASSES[:n_classes], [
             f"subset with the first {n_classes} classes of the original ImageNet1K dataset",

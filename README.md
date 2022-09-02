@@ -75,3 +75,19 @@ valid classes: ['n01440764', ...]
 
 ## Get class labels
 `python main_get_class_labels --version <VERSION>`
+
+```
+python main_get_class_labels --version in10_m3ae
+generating in10_m3ae
+classes: ['n01440764', 'n01773797', 'n02071294', 'n02104029', 'n02134084', 'n02484975', 'n02835271', 'n03127747', 'n03492542', 'n03786901']
+n01440764: ('tench', 'Tinca tinca')
+n01773797: ('garden spider', 'Aranea diademata')
+n02071294: ('killer whale', 'killer', 'orca', 'grampus', 'sea wolf', 'Orcinus orca')
+n02104029: ('kuvasz',)
+n02134084: ('ice bear', 'polar bear', 'Ursus Maritimus', 'Thalarctos maritimus')
+n02484975: ('guenon', 'guenon monkey')
+n02835271: ('bicycle-built-for-two', 'tandem bicycle', 'tandem')
+n03127747: ('crash helmet',)
+n03492542: ('hard disc', 'hard disk', 'fixed disk')
+n03786901: ('mortar',)
+```
