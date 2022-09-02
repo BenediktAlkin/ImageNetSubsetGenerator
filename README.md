@@ -41,21 +41,21 @@ valid classes: ['n01440764', ...]
    (100 random classes that don't occour
   in `in100_sololearn`)
 - `in100_sololearn_cv2` - "cross validation split" with `in100_sololearn` as base <br/> 
-  (100 random classes that don't occour in `in100_sololearn` and don't occour in previous `in100_sololearn_cv` splits)
+  (100 random classes excluding `in100_sololearn` and all previous `in100_sololearn_cv` classes)
 - `in100_sololearn_cv3` - "cross validation split" with `in100_sololearn` as base <br/>
-  (100 random classes that don't occour in `in100_sololearn` and don't occour in previous `in100_sololearn_cv` splits)
+  (100 random classes excluding `in100_sololearn` and all previous `in100_sololearn_cv` classes)
 - `in100_sololearn_cv4` - "cross validation split" with `in100_sololearn` as base <br/>
-  (100 random classes that don't occour in `in100_sololearn` and don't occour in previous `in100_sololearn_cv` splits)
+  (100 random classes excluding `in100_sololearn` and all previous `in100_sololearn_cv` classes)
 - `in100_sololearn_cv5` - "cross validation split" with `in100_sololearn` as base <br/> 
-  (100 random classes that don't occour in `in100_sololearn` and don't occour in previous `in100_sololearn_cv` splits)
+  (100 random classes excluding `in100_sololearn` and all previous `in100_sololearn_cv` classes)
 - `in100_sololearn_cv6` - "cross validation split" with `in100_sololearn` as base <br/>
-  (100 random classes that don't occour in `in100_sololearn` and don't occour in previous `in100_sololearn_cv` splits)
+  (100 random classes excluding `in100_sololearn` and all previous `in100_sololearn_cv` classes)
 - `in100_sololearn_cv7` - "cross validation split" with `in100_sololearn` as base <br/> 
-  (100 random classes that don't occour in `in100_sololearn` and don't occour in previous `in100_sololearn_cv` splits)
+  (100 random classes excluding `in100_sololearn` and all previous `in100_sololearn_cv` classes)
 - `in100_sololearn_cv8` - "cross validation split" with `in100_sololearn` as base <br/>
-  (100 random classes that don't occour in `in100_sololearn` and don't occour in previous `in100_sololearn_cv` splits)
+  (100 random classes excluding `in100_sololearn` and all previous `in100_sololearn_cv` classes)
 - `in100_sololearn_cv9` - "cross validation split" with `in100_sololearn` as base <br/>
-  (100 random classes that don't occour in `in100_sololearn` and don't occour in previous `in100_sololearn_cv` splits)
+  (100 random classes excluding `in100_sololearn` and all previous `in100_sololearn_cv` classes)
 - `in10_m3ae` - classes used for visualization in [M3AE](https://arxiv.org/abs/2205.14204)
 - `in100_seed1` - random selection of 100 ImageNet1K classes with `seed=1`
 - `in100_seed2` - random selection of 100 ImageNet1K classes with `seed=2`
