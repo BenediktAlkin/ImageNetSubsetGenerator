@@ -1,6 +1,9 @@
 # ImageNet subset generator
 
-Generate a subset (e.g. ImageNet100) from the original ImageNet1K dataset.
+- Generate a subset (e.g. ImageNet100) from the original ImageNet1K dataset.
+- Generate lightweight dummy datasets for development/debugging environments. 
+  These dummy datasets have the same classes as the specified version but take only minimal disk space.
+- Get readable labels of any ImageNet version ('ice bear' instead of 'n02134084')
 
 # Usage
 - `git clone https://github.com/BenediktAlkin/ImageNetSubsetGenerator`
