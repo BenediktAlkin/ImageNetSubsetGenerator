@@ -37,9 +37,8 @@ valid classes: ['n01440764', ...]
   classes ([source](https://www.kaggle.com/datasets/ambityga/imagenet100))
 - `in100_sololearn` - subset of ImageNet1K with 100
   classes ([source](https://github.com/vturrisi/solo-learn/issues/137))
-- `in100_sololearn_cv1` - "cross validation split" with `in100_sololearn` as base 
-   (100 random classes that don't occour
-  in `in100_sololearn`)
+- `in100_sololearn_cv1` - "cross validation split" with `in100_sololearn` as base <br/>
+   (100 random classes that don't occour in `in100_sololearn`)
 - `in100_sololearn_cv2` - "cross validation split" with `in100_sololearn` as base <br/> 
   (100 random classes excluding `in100_sololearn` and all previous `in100_sololearn_cv` classes)
 - `in100_sololearn_cv3` - "cross validation split" with `in100_sololearn` as base <br/>
