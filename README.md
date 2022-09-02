@@ -13,13 +13,19 @@ Generate a subset (e.g. ImageNet100) from the original ImageNet1K dataset.
 
 ## Generate dummy dataset
 
-Generate a lightweight dummy dataset for easy debugging/development
+Generate a lightweight dummy dataset for debugging/development environments.
 
-- `python main_dummy_dataset.py --out_path <out_path> --version in100_sololearn`
+`python main_dummy_dataset.py --out_path <out_path> --version <VERSION>`
+
+Optional CLI arguments:
+- `--train_size <TRAIN_SIZE>` how many train samples per class
+- `--valid_size <VALID_SIZE>` how many validaion samples per class
+- `--resolution_min <RESOLUTION_MIN>` each generated dummy sample has a random resolution sampled from `[RESOLUTION_MIN; RESOLUTION_MAX]` (16 by default)
+- `--resolution_max <RESOLUTION_MAX>` each generated dummy sample has a random resolution sampled from `[RESOLUTION_MIN; RESOLUTION_MAX]` (16 by default)
 
 ## Check classes/samples of dataset
 
-- `python main_statistics.py <path>`
+`python main_statistics.py <path>`
 ```
 train n_classes: 1000
 valid n_classes: 1000
