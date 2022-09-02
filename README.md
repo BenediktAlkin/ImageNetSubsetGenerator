@@ -5,6 +5,8 @@ Generate a subset (e.g. ImageNet100) from the original ImageNet1K dataset.
 # Usage
 - `git clone https://github.com/BenediktAlkin/ImageNetSubsetGenerator`
 - `cd ImageNetSubsetGenerator`
+- `python <SCRIPT> <ARGS>`
+
 ## Generate subset
 
 - `python main_subset.py --in1k_path <ImageNet1K_path> --out_path <out_path> --version in100_sololearn`
