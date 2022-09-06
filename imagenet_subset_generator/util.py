@@ -21,7 +21,8 @@ def get_versions():
     path = Path(__file__).parent
     versions = os.listdir(f"{path}/versions")
     versions.remove("__init__.py")
-    versions.remove("__pycache__")
+    if "__pycache__" in versions:
+        versions.remove("__pycache__")
     versions = list(map(lambda v: v[:-3], versions))
     return versions
 
