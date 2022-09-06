@@ -102,3 +102,6 @@ n03127747: ('crash helmet',)
 n03492542: ('hard disc', 'hard disk', 'fixed disk')
 n03786901: ('mortar',)
 ```
+
+## Check if folder is of version
+`python main_check_folder_is_version --path <PATH_TO_FOLDER> --version <VERSION>`
