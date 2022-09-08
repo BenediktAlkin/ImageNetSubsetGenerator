@@ -20,7 +20,7 @@
 
 Generate a lightweight dummy dataset for debugging/development environments.
 
-`python main_dummy_dataset.py --out_path <out_path> --version <VERSION>`
+`python main_dummy_dataset.py --out_path <out_path> --version <VERSION> [--train_size <TRAIN_SIZE>] [--valid_size <VALID_SIZE>] [--resolution_min <RES_MIN>] [--resolution_max <RES_MAX>]`
 
 Optional CLI arguments:
 - `--train_size <TRAIN_SIZE>` how many train samples per class
