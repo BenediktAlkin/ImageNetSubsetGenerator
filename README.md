@@ -82,6 +82,8 @@ valid classes: ['n01440764', ...]
 - `in200_sololearn_cv2` - concatenation of `in100_sololearn_cv4` and `in100_sololearn_cv5`
 - `in200_sololearn_cv3` - concatenation of `in100_sololearn_cv6` and `in100_sololearn_cv7`
 - `in200_sololearn_cv4` - concatenation of `in100_sololearn_cv8` and `in100_sololearn_cv9`
+- `in400_sololearn_cv0` - concatenation of `in100_sololearn`, `in100_sololearn_cv1`, `in100_sololearn_cv2`, `in100_sololearn_cv3`
+- `in400_sololearn_cv1` - concatenation of `in100_sololearn_cv4`, `in100_sololearn_cv5`, `in100_sololearn_cv6`, `in100_sololearn_cv7`
 
 
 ## Get class labels
