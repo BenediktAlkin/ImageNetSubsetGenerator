@@ -99,7 +99,7 @@ n03786901: ('mortar',)
 `python main_check_folder_is_version.py --path <PATH_TO_FOLDER> --version <VERSION>`
 
 ```
-in100_sololearn
+<VERSION>
 classes: [...]
 <PATH_TO_FOLDER> contains all classes of <VERSION>
 SUCCESS
