@@ -5,4 +5,4 @@ INFO = [
     "'cross validation split 0' with 200 classes with sololearn as base",
     "(concatenation of in100_sololearn + in100_sololearn_cv1)",
 ]
-CLASSES = CV0 + CV1
+CLASSES = list(sorted(CV0 + CV1))

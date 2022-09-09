@@ -67,16 +67,6 @@ valid classes: ['n01440764', ...]
 - `in100_sololearn_cv9` - "cross validation split" with `in100_sololearn` as base <br/>
   (100 random classes excluding `in100_sololearn` and all previous `in100_sololearn_cv` classes)
 - `in10_m3ae` - classes used for visualization in [M3AE](https://arxiv.org/abs/2205.14204)
-- `in100_seed1` - random selection of 100 ImageNet1K classes with `seed=1`
-- `in100_seed2` - random selection of 100 ImageNet1K classes with `seed=2`
-- `in100_seed3` - random selection of 100 ImageNet1K classes with `seed=3`
-- `in100_seed4` - random selection of 100 ImageNet1K classes with `seed=4`
-- `in100_seed5` - random selection of 100 ImageNet1K classes with `seed=5`
-- `in200_seed1` - random selection of 200 ImageNet1K classes with `seed=1`
-- `in200_seed2` - random selection of 200 ImageNet1K classes with `seed=2`
-- `in200_seed3` - random selection of 200 ImageNet1K classes with `seed=3`
-- `in200_seed4` - random selection of 200 ImageNet1K classes with `seed=4`
-- `in200_seed5` - random selection of 200 ImageNet1K classes with `seed=5`
 - `in200_sololearn_cv0` - concatenation of `in100_sololearn` and `in100_sololearn_cv1`
 - `in200_sololearn_cv1` - concatenation of `in100_sololearn_cv2` and `in100_sololearn_cv3`
 - `in200_sololearn_cv2` - concatenation of `in100_sololearn_cv4` and `in100_sololearn_cv5`
