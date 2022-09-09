@@ -23,6 +23,7 @@ def main():
     root_folders = list(filter(lambda p: (path / p).is_dir(), os.listdir(path)))
     if {"train", "val"} != set(root_folders):
         print(f"root_folder should only contain 'train' and 'val' folder (contains {root_folders})")
+        print("ERROR")
         return
     for split in ["train", "val"]:
         class_folders = list(filter(lambda p: (path / split / p).is_dir(), os.listdir(path / split)))
@@ -31,12 +32,15 @@ def main():
         missing_classes = list(classes - class_folders)
         if len(missing_classes) != 0:
             print(f"{len(missing_classes)} classes are missing ({split} split): {missing_classes}")
+            print("ERROR")
             return
         unnecessary_classes = list(class_folders - classes)
         if len(unnecessary_classes) != 0:
             print(f"{len(unnecessary_classes)} classes should not be present ({split} split): {unnecessary_classes}")
+            print("ERROR")
             return
     print(f"{path} contains all classes of {args.version}")
+    print("SUCCESS")
 
 
 if __name__ == "__main__":
