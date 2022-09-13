@@ -1,0 +1,1 @@
+- generate in1k h5 and only use filelists for subsets
