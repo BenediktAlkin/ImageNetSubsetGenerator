@@ -19,6 +19,7 @@ def generate_subset(
     assert train_fraction_to is None or 0. < train_fraction_to <= 1.
     train_fraction_from = train_fraction_from or 0.
     train_fraction_to = train_fraction_to or 1.
+    assert train_fraction_from < train_fraction_to
     in1k_path = Path(in1k_path).expanduser()
     out_path = Path(out_path).expanduser()
     assert in1k_path.exists(), f"invalid path to ImageNet1K: {in1k_path}"
