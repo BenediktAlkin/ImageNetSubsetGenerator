@@ -5,7 +5,8 @@ from pathlib import Path
 from .util import get_classes_and_info
 
 
-def generate_subset(in1k_path, out_path, version=None, classes=None, n_classes=None, log=print):
+def generate_subset(in1k_path, out_path, version=None, classes=None, n_classes=None, train_fraction=None, log=print):
+    assert train_fraction is None or 0. < train_fraction <= 1.
     in1k_path = Path(in1k_path).expanduser()
     out_path = Path(out_path).expanduser()
     assert in1k_path.exists(), f"invalid path to ImageNet1K: {in1k_path}"
@@ -31,11 +32,28 @@ def generate_subset(in1k_path, out_path, version=None, classes=None, n_classes=N
         split_out_path.mkdir(exist_ok=True, parents=True)
         assert len(os.listdir(split_out_path)) == 0, f"{split_out_path} is not empty"
         for folder in os.listdir(split_path):
-            if folder in classes:
+            if split == "val" or train_fraction is None or train_fraction == 1.:
+                # copy full folders
+                if folder in classes:
+                    i += 1
+                    istr = str(i).zfill(lpad)
+                    log(f"copying {split}/{folder} ({istr}/{len(classes)})")
+                    shutil.copytree(split_path / folder, split_out_path / folder)
+            else:
+                if folder not in classes:
+                    continue
                 i += 1
                 istr = str(i).zfill(lpad)
-                log(f"copying {split}/{folder} ({istr}/{len(classes)})")
-                shutil.copytree(split_path / folder, split_out_path / folder)
+                # make folder
+                (split_out_path / folder).mkdir(exist_ok=True, parents=True)
+                # filter out images
+                images = [fname for fname in os.listdir(split_path / folder) if fname.endswith(".JPEG")]
+                # copy a fraction of the images (currently take only the first <train_fraction>%
+                max_idx = int(len(images) * train_fraction)
+                log(f"copying the first {max_idx} images from {split}/{folder} ({istr}/{len(classes)})")
+                for image in images[:max_idx]:
+                    shutil.copyfile(split_path / folder / image, split_out_path / folder / image)
+
         log(f"finished copying {split}")
 
     # copy metafile

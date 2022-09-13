@@ -10,6 +10,7 @@ def parse_args():
     grp = parser.add_mutually_exclusive_group()
     grp.add_argument("--version", choices=VERSIONS, help="use predefined classes from a popular version")
     grp.add_argument("--n_classes", type=int, help="use the first n_classes from ImageNet1K")
+    parser.add_argument("--train_fraction", type=float, default=None, help="use only a fraction of the data")
     return parser.parse_args()
 
 
