@@ -67,6 +67,8 @@ def generate_subset(in1k_path, out_path, version=None, classes=None, n_classes=N
 
     # write readme
     if info is not None:
+        if train_fraction is not None and train_fraction != 1.0:
+            info.append(f"using only {train_fraction*100}% of the training data")
         log("creating README.txt")
         with open(out_path / "README.txt", "w") as f:
             f.write("\n".join(info))
