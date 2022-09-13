@@ -5,8 +5,20 @@ from pathlib import Path
 from .util import get_classes_and_info
 
 
-def generate_subset(in1k_path, out_path, version=None, classes=None, n_classes=None, train_fraction=None, log=print):
-    assert train_fraction is None or 0. < train_fraction <= 1.
+def generate_subset(
+        in1k_path,
+        out_path,
+        version=None,
+        classes=None,
+        n_classes=None,
+        train_fraction_from=None,
+        train_fraction_to=None,
+        log=print,
+):
+    assert train_fraction_from is None or 0. <= train_fraction_from < 1.
+    assert train_fraction_to is None or 0. < train_fraction_to <= 1.
+    train_fraction_from = train_fraction_from or 0.
+    train_fraction_to = train_fraction_to or 1.
     in1k_path = Path(in1k_path).expanduser()
     out_path = Path(out_path).expanduser()
     assert in1k_path.exists(), f"invalid path to ImageNet1K: {in1k_path}"
@@ -32,7 +44,7 @@ def generate_subset(in1k_path, out_path, version=None, classes=None, n_classes=N
         split_out_path.mkdir(exist_ok=True, parents=True)
         assert len(os.listdir(split_out_path)) == 0, f"{split_out_path} is not empty"
         for folder in os.listdir(split_path):
-            if split == "val" or train_fraction is None or train_fraction == 1.:
+            if split == "val" or (train_fraction_from == 0. and train_fraction_to == 1.):
                 # copy full folders
                 if folder in classes:
                     i += 1
@@ -47,11 +59,15 @@ def generate_subset(in1k_path, out_path, version=None, classes=None, n_classes=N
                 # make folder
                 (split_out_path / folder).mkdir(exist_ok=True, parents=True)
                 # filter out images
-                images = [fname for fname in os.listdir(split_path / folder) if fname.endswith(".JPEG")]
+                images = list(sorted([fname for fname in os.listdir(split_path / folder) if fname.endswith(".JPEG")]))
                 # copy a fraction of the images (currently take only the first <train_fraction>%
-                max_idx = int(len(images) * train_fraction)
-                log(f"copying the first {max_idx} images from {split}/{folder} ({istr}/{len(classes)})")
-                for image in images[:max_idx]:
+                start_idx = int(len(images) * train_fraction_from)
+                end_idx = int(len(images) * train_fraction_to)
+                log(
+                    f"copying images with indices in [{start_idx},{end_idx}) from {split}/{folder} "
+                    f"({istr}/{len(classes)})"
+                )
+                for image in images[start_idx:end_idx]:
                     shutil.copyfile(split_path / folder / image, split_out_path / folder / image)
 
         log(f"finished copying {split}")

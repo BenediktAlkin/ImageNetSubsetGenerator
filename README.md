@@ -16,7 +16,13 @@
 - this will copy the corresponding classes from the `ImageNet1K_path` to `out_path`
 - it can then be readily used with e.g. torchvision ImageFolder `subset = ImageFolder(root=<out_path>)`
 #### use only a fraction of the training data
-specify `--train_fraction <train_fraction>` with `0 < <train_fraction> <= 1.0` to use only a subset of the data
+- `--train_fraction_from <train_fraction_from>` with `0 <= train_fraction < 1.0`
+- `--train_fraction_to <train_fraction_to>` with `0 < train_fraction_to <= 1.0`
+- this will use only the data within these percentages
+- the images are sorted beforehand (within each class) so the following command will produce two disjoint sets 
+  - `python main_subset.py ... --train_fraction_to 0.5`
+  - `python main_subset.py ... --train_fraction_from 0.5`
+
 
 
 ## Generate dummy dataset
