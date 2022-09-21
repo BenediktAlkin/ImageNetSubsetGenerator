@@ -1,6 +1,9 @@
 # ImageNet subset generator
 
 - Generate a subset (e.g. ImageNet100) from the original ImageNet1K dataset.
+  - copy images to seperate folder to use with e.g. ImageFolder from torchvision
+  - generate a h5 file and a list of imagenames/labels to use with a [supplied](https://github.com/BenediktAlkin/ImageNetSubsetGenerator/blob/main/imagenet_subset_generator/h5_image_folder.py) `H5ImageFolder`
+  - generate a list of imagenames/labels to use with a [supplied](https://github.com/BenediktAlkin/ImageNetSubsetGenerator/blob/main/imagenet_subset_generator/filelist_image_folder.py) `FilelistImageFolder` which accesses the original ImageNet1K dataset but only reads out the images that are actually contained in the subset (avoids duplicate images and saves storage)
 - Generate lightweight dummy datasets for development/debugging environments. 
   These dummy datasets have the same classes as the specified version but take only minimal disk space.
 - Get readable labels of any ImageNet version ('ice bear' instead of 'n02134084')
@@ -113,3 +116,8 @@ classes: [...]
 <PATH_TO_FOLDER> contains all classes of <VERSION>
 SUCCESS
 ```
+
+## H5
+TODO
+## Benchmark dataloading
+TODO

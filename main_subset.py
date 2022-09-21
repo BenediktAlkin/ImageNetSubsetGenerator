@@ -12,6 +12,8 @@ def parse_args():
     grp.add_argument("--n_classes", type=int, help="use the first n_classes from ImageNet1K")
     parser.add_argument("--train_fraction_from", type=float, default=None, help="use only a fraction of the data")
     parser.add_argument("--train_fraction_to", type=float, default=None, help="use only a fraction of the data")
+    parser.add_argument("--h5", action="store_true", help="store data as h5 file")
+    parser.add_argument("--h5_compression", type=int, help="degree of compression for h5 file (0 lowest - 9 highest)")
     return parser.parse_args()
 
 
