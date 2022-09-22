@@ -25,5 +25,5 @@ class FilelistImageFolder(Dataset):
         with open(f"{self.data_folder_uri}/{classname}/{imgname}", 'rb') as f:
             img = Image.open(f)
             data = img.convert('RGB')
-        return to_tensor(resize(data, 224)), y
+        return to_tensor(resize(data, (224, 224))), y
 

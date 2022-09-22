@@ -23,5 +23,5 @@ class H5ImageFolder(Dataset):
         classname, imgname, y = self.filelist[index]
         img = self.h5_file[classname][imgname][:]
         img = Image.open(io.BytesIO(img)).convert("RGB")
-        return to_tensor(resize(img, 224)), y
+        return to_tensor(resize(img, (224, 224))), y
 
