@@ -2,7 +2,7 @@ import io
 from PIL import Image
 from torch.utils.data import Dataset
 import h5py
-from torchvision.transforms.functional import to_tensor
+from torchvision.transforms.functional import to_tensor, resize
 
 class H5ImageFolder(Dataset):
     def __init__(self, h5_file_uri, filelist_uri):
@@ -23,5 +23,5 @@ class H5ImageFolder(Dataset):
         classname, imgname, y = self.filelist[index]
         img = self.h5_file[classname][imgname][:]
         img = Image.open(io.BytesIO(img)).convert("RGB")
-        return to_tensor(img), y
+        return to_tensor(resize(img, 224)), y
 

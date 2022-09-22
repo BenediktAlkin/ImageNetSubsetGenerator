@@ -3,7 +3,7 @@ import numpy as np
 import io
 from PIL import Image
 from torch.utils.data import Dataset
-from torchvision.transforms.functional import to_tensor
+from torchvision.transforms.functional import to_tensor, resize
 
 class FilelistImageFolder(Dataset):
     def __init__(self, data_folder_uri, filelist_uri):
@@ -25,5 +25,5 @@ class FilelistImageFolder(Dataset):
         with open(f"{self.data_folder_uri}/{classname}/{imgname}", 'rb') as f:
             img = Image.open(f)
             data = img.convert('RGB')
-        return to_tensor(data), y
+        return to_tensor(resize(data, 224)), y
 

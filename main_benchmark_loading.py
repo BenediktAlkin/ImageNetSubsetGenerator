@@ -6,7 +6,7 @@ import argparse
 import kappaprofiler as kp
 from torch.utils.data import DataLoader
 from torchvision.datasets import ImageFolder
-from torchvision.transforms import ToTensor
+from torchvision.transforms import ToTensor, Resize, Compose
 
 
 def parse_args():
@@ -35,7 +35,7 @@ def main(data_path, num_workers):
     train_filelist = data_path / "train_filelist.txt"
     val_h5_file = data_path / "val.h5"
     val_filelist = data_path / "val_filelist.txt"
-    tt = ToTensor()
+    tt = Compose([Resize(224), ToTensor()])
     if train_image_folder.exists():
         benchmark(ImageFolder(train_image_folder, transform=tt), num_workers=num_workers, name="train ImageFolder")
     if val_image_folder.exists():
