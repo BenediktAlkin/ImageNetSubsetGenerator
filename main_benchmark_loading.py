@@ -24,8 +24,6 @@ def benchmark(dataset, num_workers, name):
         while i < n_batches:
             next(loader_iter)
             i += 1
-            if i % 1000 == 0:
-                break
     print(f"{name} with {len(dataset)} samples took {sw.elapsed_seconds}")
 
 
