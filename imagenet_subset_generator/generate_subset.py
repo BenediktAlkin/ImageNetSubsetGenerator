@@ -98,7 +98,7 @@ def generate_subset(
                     cur_images = [images[idx] for idx in indices]
                     log(
                         f"{logstr} images from {split}/{folder} ({istr}/{len(classes)}) "
-                        f"with random indices {np.array2string(indices)}"
+                        f"with random indices {np.array2string(np.array(indices))}"
                     )
 
                 filelist[folder] = []
@@ -149,7 +149,13 @@ def generate_subset(
     if info is not None:
         if train_fraction_from != 0. or train_fraction_to != 1.0:
             info.append(f"using only {(train_fraction_to-train_fraction_from)*100}% of the training data")
-            info.append(f"samples are taken from indices of {train_fraction_from*100}% to {train_fraction_to*100}%")
+            if train_fraction_seed is None:
+                info.append(f"samples are taken from indices of {train_fraction_from*100}% to {train_fraction_to*100}%")
+            else:
+                info.append(
+                    f"indices are shuffled with seed {train_fraction_seed} -> indices[{train_fraction_from*100}%:"
+                    f"{train_fraction_to*100}%] are then used to create the subset"
+                )
         log("creating README.txt")
         with open(out_path / "README.txt", "w") as f:
             f.write("\n".join(info))
