@@ -92,8 +92,9 @@ def generate_subset(
                         f"({istr}/{len(classes)})"
                     )
                 else:
-                    n_imges = end_idx - start_idx
-                    indices = rng.choice(range(len(images)), replace=False, size=n_imges)
+                    all_indices = list(range(len(images)))
+                    rng.shuffle(all_indices)
+                    indices = all_indices[start_idx:end_idx]
                     cur_images = [images[idx] for idx in indices]
                     log(
                         f"{logstr} images from {split}/{folder} ({istr}/{len(classes)}) "
