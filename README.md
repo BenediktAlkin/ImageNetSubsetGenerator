@@ -26,7 +26,7 @@
   - `python main_subset.py ... --train_fraction_to 0.5`
   - `python main_subset.py ... --train_fraction_from 0.5`
 - to randomly sample the images used for `train_fraction` use specify `--train_fraction_seed`
-
+- limit the maximum number of samples per class by specifying `--max_train_samples_per_class`
 
 
 ## Generate dummy dataset

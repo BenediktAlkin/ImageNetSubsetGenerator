@@ -17,10 +17,12 @@ def generate_subset(
         train_fraction_from=None,
         train_fraction_to=None,
         train_fraction_seed=None,
+        max_train_samples_per_class=None,
         h5=False,
         h5_compression=None,
         log=print,
 ):
+    assert max_train_samples_per_class is None or max_train_samples_per_class > 0
     assert train_fraction_from is None or 0. <= train_fraction_from < 1.
     assert train_fraction_to is None or 0. < train_fraction_to <= 1.
     train_fraction_from = train_fraction_from or 0.
@@ -85,6 +87,8 @@ def generate_subset(
                 # copy a fraction of the images (currently take only the first <train_fraction>%
                 start_idx = int(len(images) * train_fraction_from)
                 end_idx = int(len(images) * train_fraction_to)
+                if max_train_samples_per_class is not None:
+                    end_idx = min(max_train_samples_per_class, end_idx)
                 if rng is None:
                     cur_images = images[start_idx:end_idx]
                     log(
@@ -156,6 +160,8 @@ def generate_subset(
                     f"indices are shuffled with seed {train_fraction_seed} -> indices[{train_fraction_from*100}%:"
                     f"{train_fraction_to*100}%] are then used to create the subset"
                 )
+        if max_train_samples_per_class is not None:
+            info.append(f"number of train samples is limited to {max_train_samples_per_class} samples per class")
         log("creating README.txt")
         with open(out_path / "README.txt", "w") as f:
             f.write("\n".join(info))

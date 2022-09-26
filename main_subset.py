@@ -18,6 +18,10 @@ def parse_args():
         default=None,
         help="seed to shuffle before selecting the samples for train_fraction",
     )
+    parser.add_argument(
+        "--max_train_samples_per_class", type=int, default=None,
+        help="upper limit on number of train samples per class"
+    )
     parser.add_argument("--h5", action="store_true", help="store data as h5 file")
     parser.add_argument("--h5_compression", type=int, help="degree of compression for h5 file (0 lowest - 9 highest)")
     return parser.parse_args()
