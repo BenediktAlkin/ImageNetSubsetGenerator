@@ -25,6 +25,7 @@
 - the images are sorted beforehand (within each class) so the following command will produce two disjoint sets 
   - `python main_subset.py ... --train_fraction_to 0.5`
   - `python main_subset.py ... --train_fraction_from 0.5`
+- to randomly sample the images used for `train_fraction` use specify `--train_fraction_seed`
 
 
 

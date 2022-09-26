@@ -16,6 +16,7 @@ def generate_subset(
         n_classes=None,
         train_fraction_from=None,
         train_fraction_to=None,
+        train_fraction_seed=None,
         h5=False,
         h5_compression=None,
         log=print,
@@ -40,6 +41,9 @@ def generate_subset(
     )
     # max number of digits
     lpad = len(str(len(classes)))
+
+    # rng
+    rng = np.random.default_rng(seed=train_fraction_seed) if train_fraction_seed is not None else None
 
     # generate
     out_path.mkdir(exist_ok=True)
@@ -81,12 +85,23 @@ def generate_subset(
                 # copy a fraction of the images (currently take only the first <train_fraction>%
                 start_idx = int(len(images) * train_fraction_from)
                 end_idx = int(len(images) * train_fraction_to)
-                log(
-                    f"{logstr} images with indices in [{start_idx},{end_idx}) from {split}/{folder} "
-                    f"({istr}/{len(classes)})"
-                )
+                if rng is None:
+                    cur_images = images[start_idx:end_idx]
+                    log(
+                        f"{logstr} images with indices in [{start_idx},{end_idx}) from {split}/{folder} "
+                        f"({istr}/{len(classes)})"
+                    )
+                else:
+                    n_imges = end_idx - start_idx
+                    indices = rng.choice(range(len(images)), replace=False, size=n_imges)
+                    cur_images = [images[idx] for idx in indices]
+                    log(
+                        f"{logstr} images from {split}/{folder} ({istr}/{len(classes)}) "
+                        f"with random indices {np.array2string(indices)}"
+                    )
+
                 filelist[folder] = []
-                for image in images[start_idx:end_idx]:
+                for image in cur_images:
                     if not h5:
                         shutil.copyfile(split_path / folder / image, split_out_path / folder / image)
                     filelist[folder].append(image)
