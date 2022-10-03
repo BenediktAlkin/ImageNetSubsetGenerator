@@ -7,10 +7,12 @@ import h5py
 
 from .util import get_classes_and_info
 
+MODES = ["all", "imagefolder", "h5", "filelist"]
 
 def generate_subset(
         in1k_path,
         out_path,
+        mode,
         version=None,
         classes=None,
         n_classes=None,
@@ -18,7 +20,6 @@ def generate_subset(
         train_fraction_to=None,
         train_fraction_seed=None,
         max_train_samples_per_class=None,
-        h5=False,
         h5_compression=None,
         log=print,
 ):
@@ -33,6 +34,7 @@ def generate_subset(
     assert in1k_path.exists(), f"invalid path to ImageNet1K: {in1k_path}"
     nonempty_outpath_msg = f"out_path already exists and is not empty: {out_path}"
     assert not out_path.exists() or len(os.listdir(out_path)) == 0, nonempty_outpath_msg
+    assert mode in MODES
 
     # get classes and info
     classes, info = get_classes_and_info(
@@ -49,18 +51,17 @@ def generate_subset(
 
     # generate
     out_path.mkdir(exist_ok=True)
-    logstr = "collecting fileinfos from" if h5 else "copying"
     for split in ["train", "val"]:
         i = 0
 
         filelist = {}
 
-        log(f"{logstr} {split}")
+        log(f"processing {split}")
         split_path = in1k_path / split
         split_out_path = out_path / split
-        if h5:
+        if mode in ["all", "h5"]:
             assert not (out_path / f"{split}.h5").exists(), f"{split}.h5 already exists"
-        else:
+        if mode in ["all", "imagefolder"]:
             split_out_path.mkdir(exist_ok=True, parents=True)
             assert len(os.listdir(split_out_path)) == 0, f"{split_out_path} is not empty"
 
@@ -70,8 +71,8 @@ def generate_subset(
                 if folder in classes:
                     i += 1
                     istr = str(i).zfill(lpad)
-                    log(f"{logstr} {split}/{folder} ({istr}/{len(classes)})")
-                    if not h5:
+                    log(f"processing {split}/{folder} ({istr}/{len(classes)})")
+                    if mode in ["all", "imagefolder"]:
                         shutil.copytree(split_path / folder, split_out_path / folder)
                     filelist[folder] = list(sorted(os.listdir(split_path / folder)))
             else:
@@ -80,7 +81,7 @@ def generate_subset(
                 i += 1
                 istr = str(i).zfill(lpad)
                 # make folder
-                if not h5:
+                if mode in ["all", "imagefolder"]:
                     (split_out_path / folder).mkdir(exist_ok=True, parents=True)
                 # filter out images
                 images = list(sorted([fname for fname in os.listdir(split_path / folder) if fname.endswith(".JPEG")]))
@@ -92,7 +93,7 @@ def generate_subset(
                 if rng is None:
                     cur_images = images[start_idx:end_idx]
                     log(
-                        f"{logstr} images with indices in [{start_idx},{end_idx}) from {split}/{folder} "
+                        f"processing images with indices in [{start_idx},{end_idx}) from {split}/{folder} "
                         f"({istr}/{len(classes)})"
                     )
                 else:
@@ -101,13 +102,13 @@ def generate_subset(
                     indices = all_indices[start_idx:end_idx]
                     cur_images = [images[idx] for idx in indices]
                     log(
-                        f"{logstr} images from {split}/{folder} ({istr}/{len(classes)}) "
+                        f"processing images from {split}/{folder} ({istr}/{len(classes)}) "
                         f"with random indices {np.array2string(np.array(indices))}"
                     )
 
                 filelist[folder] = []
                 for image in cur_images:
-                    if not h5:
+                    if mode in ["all", "imagefolder"]:
                         shutil.copyfile(split_path / folder / image, split_out_path / folder / image)
                     filelist[folder].append(image)
 
@@ -118,7 +119,7 @@ def generate_subset(
             for i, classname in enumerate(classnames):
                 for filename in filelist[classname]:
                     f.write(f"{classname} {filename} {i}\n")
-        if h5:
+        if mode in ["all", "h5"]:
             log(f"generating h5")
             with h5py.File(out_path / f"{split}.h5", "w") as f:
                 for i, classname in enumerate(classnames):

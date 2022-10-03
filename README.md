@@ -13,11 +13,18 @@
 - `cd ImageNetSubsetGenerator`
 - `python <SCRIPT> <ARGS>`
 
+
 ## Generate subset
 
-- `python main_subset.py --in1k_path <ImageNet1K_path> --out_path <out_path> --version in100_sololearn`
+- `python main_subset.py --in1k_path <ImageNet1K_path> --out_path <out_path> --version in100_sololearn --mode imagefolder`
 - this will copy the corresponding classes from the `ImageNet1K_path` to `out_path`
 - it can then be readily used with e.g. torchvision ImageFolder `subset = ImageFolder(root=<out_path>)`
+
+#### modes
+- `imagefolder`: the result will be a folder with a `train` and a `val` directory, each containing subfolders with the classname which then contains the images
+- `h5`: a `train.h5` and a `val.h5` file will be generated containing all images. Additionally also the filelist will be generated for faster loading of h5 images
+- `filelist` only generate a list of image names that are contained in the subset
+
 #### use only a fraction of the training data
 - `--train_fraction_from <train_fraction_from>` with `0 <= train_fraction < 1.0`
 - `--train_fraction_to <train_fraction_to>` with `0 < train_fraction_to <= 1.0`
