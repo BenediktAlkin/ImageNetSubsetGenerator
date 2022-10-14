@@ -140,6 +140,7 @@ def generate_subset(
                             compression="gzip",
                             compression_opts=h5_compression,
                         )
+                        info.append(f"h5_compression={h5_compression}")
 
     # copy metafile
     meta_path = in1k_path / "meta.bin"
