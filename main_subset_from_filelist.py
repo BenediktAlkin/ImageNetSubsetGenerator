@@ -27,7 +27,9 @@ def main(in1k_path, out_path, filelist):
     for f in filelist:
         folder = f.split("_")[0]
         src_path = in1k_train_path / folder / f
-        dst_path = out_path / folder / f
+        dst_folder = out_path / folder
+        dst_folder.mkdir(exist_ok=True)
+        dst_path = dst_folder / f
         print(f"copy {src_path} to {dst_path}")
         shutil.copy(src_path, dst_path)
 
