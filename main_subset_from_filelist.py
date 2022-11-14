@@ -2,8 +2,6 @@ import shutil
 import argparse
 from pathlib import Path
 
-import yaml
-
 
 def parse_args():
     parser = argparse.ArgumentParser()
@@ -23,7 +21,8 @@ def main(in1k_path, out_path, filelist):
     assert filelist.exists()
 
     with open(filelist) as f:
-        filelist = yaml.safe_load(f)
+        filelist = f.readlines()
+    filelist = [f.replace("\n", "") for f in filelist]
 
     for f in filelist:
         folder = f.split("_")[0]
