@@ -1,7 +1,7 @@
 import argparse
 import torch
 
-from imagenet_subset_generator import VERSIONS, get_classes_and_info
+from imagenet_subset_generator import VERSIONS, parse_version
 
 
 def parse_args():
@@ -11,7 +11,7 @@ def parse_args():
 
 def main():
     args = parse_args()
-    classes, _ = get_classes_and_info(version=args.version)
+    classes, _ = parse_version(version=args.version)
     id_to_label, _ = torch.load("res/meta.bin")
     for cls in classes:
         print(f"{cls}: {id_to_label[cls]}")
