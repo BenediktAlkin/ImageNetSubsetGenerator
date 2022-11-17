@@ -54,7 +54,7 @@ def generate_subset(in1k_path, out_path, version, train, val, log=print):
             src_file = split_path / folder / file
             assert src_file.exists()
             log(f"processing {file}")
-            shutil.copy(src_file, out_path / folder / file)
+            shutil.copy(src_file, split_out_path / folder / file)
 
     # copy metafile
     meta_path = in1k_path / "meta.bin"
