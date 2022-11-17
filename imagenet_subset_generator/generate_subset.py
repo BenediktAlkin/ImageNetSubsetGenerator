@@ -20,7 +20,7 @@ def generate_subset(in1k_path, out_path, version, train, val, log=print):
     # get classes and info
     classes, files, info = parse_version(version=version, log=log)
     # max number of digits
-    lpad = len(str(len(classes)))
+    lpad = len(str(len(classes))) if classes is not None else 0
 
     # copy folders
     out_path.mkdir(exist_ok=True)
