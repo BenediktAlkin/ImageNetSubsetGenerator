@@ -128,13 +128,5 @@ SUCCESS
 ## ImageNet-A/ImageNet-R/...
 [ImageNet-A](https://github.com/hendrycks/natural-adv-examples)/
 [ImageNet-R](https://github.com/hendrycks/imagenet-r)/... only contain samples for a subset of the ImageNet1K classes. 
-For easy usage with `torchvision.datasets.ImageFolder` empty folders for classes without samples are created. 
-`create_empty_in1k_folders.sh` does exactly that when following the folder structure of ImageNet1K:
-```
-ImageNet-A/
-  create_empty_in1k_folders.sh
-  val/
-    n01498041
-    n01531178
-    ...
-```
+For easy usage with `torchvision.datasets.ImageFolder` a mapping from class name to its corresponding ImageNet1K class
+index can be found in `res/ImageNet-A class_to_idx.yaml`/`res/ImageNet-R class_to_idx.yaml`.
