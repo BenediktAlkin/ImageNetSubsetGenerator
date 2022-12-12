@@ -8,9 +8,6 @@ from pathlib import Path
 def n_files_in_directory(root):
     return sum([len(files) for _, _, files in os.walk(root)])
 
-def file_names_in_directory(root):
-    return list(itertools.chain(*[files for _, _, files in os.walk(root)]))
-
 def n_folders_in_directory(root):
     return sum([len(dirs) for _, dirs, _ in os.walk(root)])
 
