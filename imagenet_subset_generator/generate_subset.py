@@ -11,6 +11,7 @@ def generate_subset(in1k_path, out_path, version, log=print):
     assert in1k_path.exists(), f"invalid path to ImageNet1K: {in1k_path}"
     nonempty_outpath_msg = f"out_path already exists and is not empty: {out_path}"
     assert not out_path.exists() or len(os.listdir(out_path)) == 0, nonempty_outpath_msg
+    log(f"generating subset of {in1k_path} in {out_path}")
 
     # get classes and info
     classes, files, info = parse_version(version=version, log=log)
@@ -63,3 +64,6 @@ def generate_subset(in1k_path, out_path, version, log=print):
     with open(out_path / "README.txt", "w") as f:
         f.write("\n".join(info))
     log("created README.txt")
+
+    #
+    log(f"created subset '{out_path}' ({version})")
