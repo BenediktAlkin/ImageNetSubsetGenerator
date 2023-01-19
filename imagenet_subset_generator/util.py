@@ -3,7 +3,7 @@ import itertools
 import os
 import numpy as np
 from pathlib import Path
-
+from collections import defaultdict
 
 def n_files_in_directory(root):
     return sum([len(files) for _, _, files in os.walk(root)])
@@ -13,6 +13,15 @@ def n_folders_in_directory(root):
 
 def folder_names_in_directory(root):
     return list(itertools.chain(*[dirs for _, dirs, _ in os.walk(root)]))
+
+def n_files_in_subdirectories(root):
+    results = defaultdict(int)
+    for subdir in os.listdir(root):
+        subdir_path = root / subdir
+        for item in os.listdir(root / subdir):
+            assert not (subdir_path / item).is_dir()
+            results[subdir] += 1
+    return results
 
 def get_versions():
     path = Path(__file__).parent
