@@ -33,8 +33,9 @@ def generate_subset(in1k_path, out_path, version, log=print):
                 if folder in classes:
                     i += 1
                     istr = str(i).zfill(lpad)
-                    log(f"linking {split}/{folder} ({istr}/{len(classes)})")
-                    os.symlink(split_path / folder, split_out_path / folder, target_is_directory=True)
+                    log(f"process {split}/{folder} ({istr}/{len(classes)})")
+                    shutil.copytree(split_path / folder, split_out_path / folder)
+                    # os.symlink(split_path / folder, split_out_path / folder, target_is_directory=True)
 
     # link files (only makes sense for train split)
     if files is not None:
@@ -46,16 +47,18 @@ def generate_subset(in1k_path, out_path, version, log=print):
             folder = file.split("_")[0]
             src_file = split_path / folder / file
             assert src_file.exists()
-            log(f"linking {file}")
+            log(f"process {file}")
             dst_folder = split_out_path / folder
             dst_folder.mkdir(exist_ok=True)
-            os.symlink(src_file, dst_folder / file, target_is_directory=False)
+            shutil.copy(src_file, dst_folder / file)
+            #os.symlink(src_file, dst_folder / file, target_is_directory=False)
 
     # link metafile
     meta_path = in1k_path / "meta.bin"
     if meta_path.exists():
-        log("linking meta.bin")
-        os.symlink(in1k_path / "meta.bin", out_path / "meta.bin", target_is_directory=False)
+        log("processing meta.bin")
+        shutil.copy(in1k_path / "meta.bin", out_path / "meta.bin")
+        #os.symlink(in1k_path / "meta.bin", out_path / "meta.bin", target_is_directory=False)
     else:
         log(f"no meta.bin file found")
 
