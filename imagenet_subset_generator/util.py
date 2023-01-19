@@ -18,7 +18,9 @@ def n_files_in_subdirectories(root):
     results = defaultdict(int)
     for subdir in os.listdir(root):
         subdir_path = root / subdir
-        for item in os.listdir(root / subdir):
+        if not subdir_path.is_dir():
+            continue
+        for item in os.listdir(subdir_path):
             assert not (subdir_path / item).is_dir()
             results[subdir] += 1
     return results
