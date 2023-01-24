@@ -30,9 +30,9 @@ def main(root, end_index, seed):
             class_to_fnames[cls].append(fname)
 
     for cls, fnames in class_to_fnames.items():
+        assert len(fnames) == end_index
         for fname in fnames:
             print(f"{fname}")
-
 
 
 if __name__ == "__main__":
