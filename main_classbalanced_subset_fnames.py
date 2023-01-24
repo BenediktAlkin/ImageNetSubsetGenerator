@@ -21,6 +21,7 @@ def main(root, end_index, seed):
 
     class_to_fnames = defaultdict(list)
     ds = ImageFolder(root=root)
+    print(f"sampling {end_index} samples from {root} (len={len(ds)}) with seed={seed}")
     fname_class_tuple = ds.imgs
     rng = np.random.default_rng(seed=seed)
     rng.shuffle(fname_class_tuple)
