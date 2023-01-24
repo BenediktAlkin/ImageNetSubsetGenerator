@@ -32,7 +32,7 @@ def main(root, end_index, seed):
     for cls, fnames in class_to_fnames.items():
         assert len(fnames) == end_index
         for fname in fnames:
-            print(f"{fname}")
+            print(f"{fname.name}")
 
 
 if __name__ == "__main__":
