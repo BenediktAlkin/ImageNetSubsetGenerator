@@ -125,8 +125,7 @@ classes: [...]
 SUCCESS
 ```
 
-## ImageNet-A/ImageNet-R/...
-[ImageNet-A](https://github.com/hendrycks/natural-adv-examples)/
-[ImageNet-R](https://github.com/hendrycks/imagenet-r)/... only contain samples for a subset of the ImageNet1K classes. 
-For easy usage with `torchvision.datasets.ImageFolder` a mapping from class name to its corresponding ImageNet1K class
-index can be found in `res/ImageNet-A class_to_idx.yaml`/`res/ImageNet-R class_to_idx.yaml`.
+## H5
+TODO
+## Benchmark dataloading
+TODO

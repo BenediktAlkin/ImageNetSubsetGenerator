@@ -1,6 +1,11 @@
 import argparse
 from pathlib import Path
-from imagenet_subset_generator import n_files_in_directory, n_folders_in_directory, folder_names_in_directory
+from imagenet_subset_generator import (
+    n_files_in_directory,
+    n_folders_in_directory,
+    folder_names_in_directory,
+    n_files_in_subdirectories,
+)
 
 
 def parse_args():
@@ -12,17 +17,27 @@ def parse_args():
 def main(path, verbose):
     path = Path(path).expanduser()
     assert path.exists(), f"path doesn't exist: {path}"
+    
     train_path = path / "train"
-    assert train_path.exists(), f"train_path doesn't exist: {train_path}"
+    if train_path.exists():
+        print(f"train n_classes: {n_folders_in_directory(train_path)}")
+        print(f"train n_samples: {n_files_in_directory(train_path)}")
+        if verbose:
+            print(f"train classes: {folder_names_in_directory(train_path)}")
+            print(f"train samples per class:")
+            for key, value in n_files_in_subdirectories(train_path).items():
+                print(f"{key}: {value}")
+
+
     valid_path = path / "val"
-    assert valid_path.exists(), f"valid_path doesn't exist: {valid_path}"
-    print(f"train n_classes: {n_folders_in_directory(train_path)}")
-    print(f"valid n_classes: {n_folders_in_directory(valid_path)}")
-    print(f"train n_samples: {n_files_in_directory(train_path)}")
-    print(f"valid n_samples: {n_files_in_directory(valid_path)}")
-    if verbose:
-        print(f"train classes: {folder_names_in_directory(train_path)}")
-        print(f"valid classes: {folder_names_in_directory(valid_path)}")
+    if valid_path.exists():
+        print(f"valid n_classes: {n_folders_in_directory(valid_path)}")
+        print(f"valid n_samples: {n_files_in_directory(valid_path)}")
+        if verbose:
+            print(f"valid classes: {folder_names_in_directory(valid_path)}")
+            print(f"valid samples per class:")
+            for key, value in n_files_in_subdirectories(valid_path).items():
+                print(f"{key}: {value}")
 
 
 if __name__ == "__main__":
