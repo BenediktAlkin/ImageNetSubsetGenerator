@@ -1,4 +1,6 @@
 INFO = [
+    "ImageNet1K 1% subset used by SimCLRv2, MSN, ...",
+    "https://github.com/google-research/simclr/blob/master/imagenet_subsets/1percent.txt",
     "https://github.com/facebookresearch/msn/blob/main/imagenet_subsets1/1percent.txt",
 ]
 
