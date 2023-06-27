@@ -2,8 +2,10 @@
 
 Generate a subsets from the original ImageNet1K dataset.
 Some commonly used subsets:
-- [ImageNet 10% subset](https://github.com/google-research/simclr/blob/master/imagenet_subsets/10percent.txt)
-- [ImageNet 1% subset](https://github.com/google-research/simclr/blob/master/imagenet_subsets/1percent.txt)
+- [SimclrV2 10% subset](https://github.com/google-research/simclr/blob/master/imagenet_subsets/10percent.txt)
+- [SemiViT 10% subset](https://github.com/amazon-science/semi-vit)
+- [SimclrV2 1% subset](https://github.com/google-research/simclr/blob/master/imagenet_subsets/1percent.txt)
+- [SemiViT 1% subset](https://github.com/amazon-science/semi-vit)
 - Extreme low-shot subsets from [MSN](https://github.com/facebookresearch/msn)
 
 
