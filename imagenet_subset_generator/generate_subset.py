@@ -5,7 +5,7 @@ from pathlib import Path
 
 from .util import parse_version
 
-def generate_subset(in1k_path, out_path, version, log=print):
+def generate_subset(in1k_path, out_path, version, mode="copy", log=print):
     in1k_path = Path(in1k_path).expanduser()
     out_path = Path(out_path).expanduser()
     assert in1k_path.exists(), f"invalid path to ImageNet1K: {in1k_path}"
@@ -34,8 +34,12 @@ def generate_subset(in1k_path, out_path, version, log=print):
                     i += 1
                     istr = str(i).zfill(lpad)
                     log(f"process {split}/{folder} ({istr}/{len(classes)})")
-                    shutil.copytree(split_path / folder, split_out_path / folder)
-                    # os.symlink(split_path / folder, split_out_path / folder, target_is_directory=True)
+                    if mode == "copy":
+                        shutil.copytree(split_path / folder, split_out_path / folder)
+                    elif mode == "link":
+                        os.symlink(split_path / folder, split_out_path / folder, target_is_directory=True)
+                    else:
+                        raise NotImplementedError
 
     # link files (only makes sense for train split)
     if files is not None:
@@ -50,15 +54,23 @@ def generate_subset(in1k_path, out_path, version, log=print):
             log(f"process {file}")
             dst_folder = split_out_path / folder
             dst_folder.mkdir(exist_ok=True)
-            shutil.copy(src_file, dst_folder / file)
-            #os.symlink(src_file, dst_folder / file, target_is_directory=False)
+            if mode == "copy":
+                shutil.copy(src_file, dst_folder / file)
+            elif mode == "link":
+                os.symlink(src_file, dst_folder / file, target_is_directory=False)
+            else:
+                raise NotImplementedError
 
     # link metafile
     meta_path = in1k_path / "meta.bin"
     if meta_path.exists():
         log("processing meta.bin")
-        shutil.copy(in1k_path / "meta.bin", out_path / "meta.bin")
-        #os.symlink(in1k_path / "meta.bin", out_path / "meta.bin", target_is_directory=False)
+        if mode == "copy":
+            shutil.copy(in1k_path / "meta.bin", out_path / "meta.bin")
+        elif mode == "link":
+            os.symlink(in1k_path / "meta.bin", out_path / "meta.bin", target_is_directory=False)
+        else:
+            raise NotImplementedError
     else:
         log(f"no meta.bin file found")
 
@@ -69,4 +81,4 @@ def generate_subset(in1k_path, out_path, version, log=print):
     log("created README.txt")
 
     #
-    log(f"created subset '{out_path}' ({version})")
+    log(f"created subset '{out_path}' (version={version} mode={mode})")
